@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 FIFA World Cup Predictor</title>
+  <link rel="stylesheet" href="static/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════ HERO ══════════════════════════════════════════════ -->
+  <header class="hero">
+    <div class="hero__bg-shapes">
+      <div class="shape shape--1"></div>
+      <div class="shape shape--2"></div>
+      <div class="shape shape--3"></div>
+    </div>
+    <div class="hero__content">
+      <div class="trophy-icon">&#127942;</div>
+      <p class="hero__eyebrow">AI-POWERED · LIVE DATA · 50,000 SIMULATIONS</p>
+      <h1 class="hero__title">2026 FIFA<br/>World Cup</h1>
+      <p class="hero__subtitle">
+        Predictions driven by live API-Football data —
+        FIFA rankings, last-10 match form, World Cup history,
+        squad depth, and Poisson match simulation.
+      </p>
+      <button id="btnPredict" class="btn btn--primary">
+        <span class="btn-text">Run Prediction</span>
+        <span class="btn-icon">&#9654;</span>
+      </button>
+      <button id="btnRefresh" class="btn btn--ghost" style="display:none;">
+        <span class="btn-text">Re-simulate</span>
+        <span class="btn-icon">&#8635;</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════ API KEY WARNING ═══════════════════════════════════ -->
+  <div id="apiKeyBanner" class="banner banner--warning hidden">
+    <strong>&#9888; No API key detected.</strong>
+    Add <code>RAPIDAPI_KEY=your_key</code> to your <code>.env</code> file
+    to use live data.
+    <a href="https://rapidapi.com/api-sports/api/api-football" target="_blank" rel="noopener">
+      Get a free key &#8599;
+    </a>
+  </div>
+
+  <!-- ═══════ ERROR BANNER ══════════════════════════════════════ -->
+  <div id="errorBanner" class="banner banner--error hidden">
+    <strong>&#10006; Error:</strong> <span id="errorMsg"></span>
+  </div>
+
+  <!-- ═══════ WINNER CARD ═══════════════════════════════════════ -->
+  <section id="winnerSection" class="winner-section hidden">
+    <div class="container">
+      <div class="winner-card" id="winnerCard">
+        <div class="winner-card__glow"></div>
+        <p class="winner-card__label">PREDICTED 2026 WORLD CUP WINNER</p>
+        <div class="winner-card__flag" id="winnerFlag"></div>
+        <h2 class="winner-card__name" id="winnerName">—</h2>
+        <div class="winner-card__stats">
+          <div class="stat-pill">
+            <span class="stat-pill__label">Win Probability</span>
+            <span class="stat-pill__value" id="winnerProb">—</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill__label">Reach Final</span>
+            <span class="stat-pill__value" id="winnerFinal">—</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill__label">Strength Score</span>
+            <span class="stat-pill__value" id="winnerStrength">—</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill__label">FIFA Rank</span>
+            <span class="stat-pill__value" id="winnerRank">—</span>
+          </div>
+        </div>
+        <div class="confetti-container" id="confetti"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ TOP 5 PODIUM ══════════════════════════════════════ -->
+  <section id="podiumSection" class="podium-section hidden">
+    <div class="container">
+      <h2 class="section-title">Top Contenders</h2>
+      <p class="section-sub">Teams with the highest predicted championship probability</p>
+      <div class="podium" id="podium"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ METRIC BREAKDOWN ══════════════════════════════════ -->
+  <section id="metricsSection" class="metrics-section hidden">
+    <div class="container">
+      <h2 class="section-title">Prediction Methodology</h2>
+      <p class="section-sub">
+        6 metrics pulled from live API data, weighted by predictive power,
+        then fed into 50,000 Monte Carlo tournament simulations
+      </p>
+      <div class="metrics-grid" id="metricsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ WINNER METRIC RADAR ═══════════════════════════════ -->
+  <section id="radarSection" class="radar-section hidden">
+    <div class="container">
+      <h2 class="section-title">Winner Metric Breakdown</h2>
+      <p class="section-sub" id="radarSubtitle">Live metric scores used in the prediction</p>
+      <div class="radar-grid" id="radarGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════ FULL RANKINGS TABLE ═══════════════════════════════ -->
+  <section id="rankingsSection" class="rankings-section hidden">
+    <div class="container">
+      <h2 class="section-title">Full Rankings</h2>
+      <p class="section-sub">All 48 qualified teams ranked by predicted championship probability</p>
+      <div class="table-controls">
+        <input type="text" id="searchInput" placeholder="&#128269; Search team..." class="search-input" />
+        <select id="confFilter" class="conf-filter">
+          <option value="ALL">All Confederations</option>
+          <option value="UEFA">UEFA (Europe)</option>
+          <option value="CONMEBOL">CONMEBOL (S. America)</option>
+          <option value="CONCACAF">CONCACAF (N/C America)</option>
+          <option value="CAF">CAF (Africa)</option>
+          <option value="AFC">AFC (Asia)</option>
+        </select>
+      </div>
+      <div class="table-wrapper">
+        <table class="rankings-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Team</th>
+              <th>Win %</th>
+              <th>Final %</th>
+              <th>Semi-Final %</th>
+              <th>Strength</th>
+              <th>FIFA Rank</th>
+              <th>Confederation</th>
+            </tr>
+          </thead>
+          <tbody id="rankingsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ LOADING OVERLAY ═══════════════════════════════════ -->
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <p class="loading-text">Fetching live data &amp; running
+        <strong id="simCount">0</strong> simulations…
+      </p>
+      <p class="loading-sub">Pulling FIFA rankings · match form · WC history · squad data</p>
+      <div class="loading-bar">
+        <div class="loading-bar__fill" id="loadingBarFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ FOOTER ═════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p>Data sourced live from <strong>API-Football</strong> via RapidAPI &bull; 50,000 Monte Carlo simulations</p>
+      <p class="footer__disclaimer">Predictions are probabilistic. Football is beautifully unpredictable.</p>
+    </div>
+  </footer>
+
+  <script src="static/js/app.js"></script>
+</body>
+</html>
