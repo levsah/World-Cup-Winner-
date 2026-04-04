@@ -35,12 +35,13 @@ CONFED_CUP_IDS      = {
 # Each weight is the relative importance of that metric (sum = 1)
 # ------------------------------------------------------------------
 WEIGHTS = {
-    "fifa_ranking":          0.20,   # Current FIFA world ranking
-    "recent_form":           0.25,   # Last 10 international results
-    "wc_history":            0.15,   # Historical World Cup performance
-    "squad_strength":        0.20,   # Avg player market value / rating
+    "fifa_ranking":          0.20,   # Current FIFA world ranking (with embedded fallback)
+    "recent_form":           0.20,   # Last 10 international results (team-perspective-aware)
+    "wc_history":            0.12,   # Historical World Cup performance
+    "squad_strength":        0.08,   # Squad completeness (23-man roster bonus)
     "goal_difference":       0.10,   # Recent matches goal difference
     "tournament_experience": 0.10,   # # of WC appearances
+    "player_performance":    0.20,   # Per-team player quality (stars + squad depth)
 }
 
 # ------------------------------------------------------------------

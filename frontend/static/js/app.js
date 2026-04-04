@@ -31,19 +31,19 @@ const MEDAL_ICONS = { 1: "🥇", 2: "🥈", 3: "🥉", 4: "4th", 5: "5th" };
 const METRIC_INFO = {
   "FIFA Ranking Score": {
     weight: "20%",
-    desc: "Current FIFA world ranking, inverted and normalised — #1 = 100/100.",
+    desc: "Current FIFA world ranking inverted & normalised — #1 = 100/100. Uses live API data with embedded April 2026 rankings as fallback.",
+  },
+  "Player Performance": {
+    weight: "20%",
+    desc: "Per-team player quality score based on squad stars, depth, and individual club-level output (e.g. Mbappé, Bellingham, Vinicius Jr.).",
   },
   "Recent Form": {
-    weight: "25%",
-    desc: "Points earned in the last 10 competitive international fixtures.",
+    weight: "20%",
+    desc: "Points earned in the last 10 competitive international fixtures, correctly attributed from each team's own perspective (home & away).",
   },
   "WC History": {
-    weight: "15%",
+    weight: "12%",
     desc: "Average World Cup round reached across 2006–2022 tournaments.",
-  },
-  "Squad Strength": {
-    weight: "20%",
-    desc: "Derived from squad completeness & club-league tier of players.",
   },
   "Goal Difference": {
     weight: "10%",
@@ -52,6 +52,10 @@ const METRIC_INFO = {
   "Tournament Experience": {
     weight: "10%",
     desc: "Number of distinct World Cup appearances (up to 2022).",
+  },
+  "Squad Strength": {
+    weight: "8%",
+    desc: "Squad completeness bonus — rewards a full 23-man roster returned by the API.",
   },
 };
 
