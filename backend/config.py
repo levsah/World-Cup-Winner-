@@ -11,8 +11,10 @@ load_dotenv()
 # Get your free key at: https://dashboard.api-football.com/register
 # Free tier: 100 requests / day
 # ------------------------------------------------------------------
-APISPORTS_KEY   = os.getenv("APISPORTS_KEY", "")
-API_BASE_URL    = "https://v3.football.api-sports.io"
+RAPIDAPI_KEY    = os.getenv("RAPIDAPI_KEY", "")
+APISPORTS_KEY   = os.getenv("APISPORTS_KEY", "")   # kept for backwards compat
+API_BASE_URL    = "https://api-football-v1.p.rapidapi.com"
+RAPIDAPI_HOST   = "api-football-v1.p.rapidapi.com"
 
 # ------------------------------------------------------------------
 # API-Football league / competition IDs

@@ -21,7 +21,7 @@ from typing import Any
 
 import requests
 
-from config import APISPORTS_KEY, API_BASE_URL, CACHE_TIMEOUT_SECONDS
+from config import RAPIDAPI_KEY, APISPORTS_KEY, API_BASE_URL, RAPIDAPI_HOST, CACHE_TIMEOUT_SECONDS
 
 logger = logging.getLogger(__name__)
 
@@ -41,14 +41,19 @@ def _cached_get(endpoint: str, params: dict) -> dict:
             logger.debug("Cache hit: %s", cache_key)
             return data
 
-    if not APISPORTS_KEY:
+    api_key = RAPIDAPI_KEY or APISPORTS_KEY
+    if not api_key:
         raise RuntimeError(
-            "APISPORTS_KEY is not set. "
-            "Add APISPORTS_KEY=<your_key> to your .env file. "
-            "Get a free key at https://dashboard.api-football.com/register"
+            "No API key set. Add RAPIDAPI_KEY=<your_key> to your .env file."
         )
 
-    headers = {"x-apisports-key": APISPORTS_KEY}
+    if RAPIDAPI_KEY:
+        headers = {
+            "x-rapidapi-key":  RAPIDAPI_KEY,
+            "x-rapidapi-host": RAPIDAPI_HOST,
+        }
+    else:
+        headers = {"x-apisports-key": APISPORTS_KEY}
     url = f"{API_BASE_URL}/{endpoint}"
     response = requests.get(url, headers=headers, params=params, timeout=15)
     response.raise_for_status()

@@ -4,22 +4,22 @@
 
 /* ── Custom Properties ────────────────────────────────────────── */
 :root {
-  --clr-bg:         #08090d;
-  --clr-surface:    #10121a;
-  --clr-surface2:   #181b26;
-  --clr-border:     rgba(255,255,255,0.08);
-  --clr-gold:       #f5c842;
-  --clr-gold-light: #ffe066;
-  --clr-green:      #00d68f;
-  --clr-blue:       #3d9aff;
-  --clr-purple:     #a855f7;
-  --clr-red:        #ff4d6d;
-  --clr-text:       #e8eaf0;
-  --clr-text-muted: #7a8099;
+  --clr-bg:         #ffffff;
+  --clr-surface:    #f4f7f4;
+  --clr-surface2:   #e8f0e9;
+  --clr-border:     rgba(0,0,0,0.09);
+  --clr-gold:       #e6a800;
+  --clr-gold-light: #ffd200;
+  --clr-green:      #00a84f;
+  --clr-blue:       #0090b8;
+  --clr-orange:     #e85d00;
+  --clr-red:        #d42b45;
+  --clr-text:       #1a2e1c;
+  --clr-text-muted: #5a7a5e;
   --radius-lg:      20px;
   --radius-md:      12px;
   --radius-sm:      8px;
-  --shadow-glow:    0 0 60px rgba(245,200,66,0.15);
+  --shadow-glow:    0 0 80px rgba(230,168,0,0.18);
   --transition:     all 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 
@@ -54,7 +54,7 @@ body {
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background: radial-gradient(ellipse 120% 80% at 50% 0%, #1a2540 0%, var(--clr-bg) 70%);
+  background: radial-gradient(ellipse 140% 90% at 50% 0%, #e8f5e9 0%, #f9fdf9 50%, #ffffff 100%);
 }
 
 .hero__bg-shapes {
@@ -68,26 +68,26 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.18;
+  opacity: 0.28;
 }
 
 .shape--1 {
-  width: 600px; height: 600px;
+  width: 650px; height: 650px;
   background: var(--clr-gold);
-  top: -200px; left: -100px;
+  top: -220px; left: -120px;
   animation: floatShape 12s ease-in-out infinite;
 }
 
 .shape--2 {
-  width: 400px; height: 400px;
-  background: var(--clr-blue);
-  bottom: -100px; right: -100px;
+  width: 450px; height: 450px;
+  background: var(--clr-green);
+  bottom: -120px; right: -120px;
   animation: floatShape 9s ease-in-out infinite reverse;
 }
 
 .shape--3 {
-  width: 300px; height: 300px;
-  background: var(--clr-purple);
+  width: 350px; height: 350px;
+  background: var(--clr-orange);
   top: 40%; left: 55%;
   animation: floatShape 15s ease-in-out infinite 3s;
 }
@@ -131,8 +131,8 @@ body {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(56px, 10vw, 100px);
   line-height: 0.95;
-  color: #fff;
-  text-shadow: 0 0 80px rgba(245,200,66,0.3);
+  color: #1a2e1c;
+  text-shadow: 0 2px 20px rgba(230,168,0,0.2);
   margin-bottom: 20px;
 }
 
@@ -163,14 +163,14 @@ body {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--clr-gold), #e8a800);
-  color: #0a0800;
-  box-shadow: 0 4px 30px rgba(245,200,66,0.35);
+  background: linear-gradient(135deg, var(--clr-gold), var(--clr-orange));
+  color: #0a0500;
+  box-shadow: 0 4px 30px rgba(255,210,0,0.40);
 }
 
 .btn--primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 40px rgba(245,200,66,0.55);
+  box-shadow: 0 8px 44px rgba(255,109,0,0.55);
 }
 
 .btn--primary:active { transform: translateY(-1px); }
@@ -192,7 +192,7 @@ body {
 .section-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(32px, 5vw, 52px);
-  color: #fff;
+  color: #1a2e1c;
   margin-bottom: 8px;
   letter-spacing: 1px;
 }
@@ -210,8 +210,8 @@ body {
 
 .winner-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(245,200,66,0.08) 0%, rgba(245,200,66,0.03) 100%);
-  border: 1px solid rgba(245,200,66,0.25);
+  background: linear-gradient(135deg, rgba(255,210,0,0.12) 0%, rgba(0,230,118,0.06) 60%, rgba(255,109,0,0.06) 100%);
+  border: 1px solid rgba(255,210,0,0.35);
   border-radius: var(--radius-lg);
   padding: 60px 40px 50px;
   text-align: center;
@@ -219,7 +219,7 @@ body {
   margin: 0 auto;
   overflow: hidden;
   animation: cardReveal 0.8s cubic-bezier(0.16,1,0.3,1) both;
-  box-shadow: var(--shadow-glow);
+  box-shadow: var(--shadow-glow), 0 0 0 1px rgba(0,230,118,0.08);
 }
 
 @keyframes cardReveal {
@@ -231,8 +231,8 @@ body {
   position: absolute;
   top: -100px; left: 50%;
   transform: translateX(-50%);
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(245,200,66,0.2) 0%, transparent 70%);
+  width: 500px; height: 400px;
+  background: radial-gradient(ellipse, rgba(255,210,0,0.25) 0%, rgba(0,230,118,0.08) 50%, transparent 70%);
   pointer-events: none;
 }
 
@@ -260,8 +260,8 @@ body {
 .winner-card__name {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(48px, 8vw, 80px);
-  color: #fff;
-  text-shadow: 0 0 40px rgba(245,200,66,0.4);
+  color: #1a2e1c;
+  text-shadow: 0 2px 20px rgba(230,168,0,0.3);
   margin-bottom: 32px;
   animation: nameReveal 0.6s ease both 0.6s;
 }
@@ -279,7 +279,7 @@ body {
 }
 
 .stat-pill {
-  background: rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.04);
   border: 1px solid var(--clr-border);
   border-radius: 50px;
   padding: 10px 20px;
@@ -351,9 +351,10 @@ body {
 }
 
 .podium-item--1st {
-  border-color: rgba(245,200,66,0.4);
-  background: linear-gradient(180deg, rgba(245,200,66,0.12) 0%, var(--clr-surface2) 60%);
+  border-color: rgba(255,210,0,0.5);
+  background: linear-gradient(180deg, rgba(255,210,0,0.18) 0%, rgba(255,109,0,0.06) 50%, var(--clr-surface2) 100%);
   min-height: 220px;
+  box-shadow: 0 0 30px rgba(255,210,0,0.12);
   display: flex; flex-direction: column; justify-content: flex-end;
 }
 
@@ -372,7 +373,7 @@ body {
 .podium-item__name {
   font-weight: 700;
   font-size: 14px;
-  color: #fff;
+  color: #1a2e1c;
   margin-bottom: 6px;
 }
 
@@ -442,11 +443,11 @@ body {
 .metric-card__weight {
   font-size: 18px;
   font-weight: 700;
-  color: var(--clr-blue);
+  color: var(--clr-orange);
 }
 
 .metric-bar-track {
-  background: rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.08);
   border-radius: 50px;
   height: 6px;
   overflow: hidden;
@@ -455,7 +456,7 @@ body {
 .metric-bar-fill {
   height: 100%;
   border-radius: 50px;
-  background: linear-gradient(90deg, var(--clr-blue), var(--clr-purple));
+  background: linear-gradient(90deg, var(--clr-green), var(--clr-blue));
   transition: width 1s cubic-bezier(0.4,0,0.2,1);
   width: 0%;
 }
@@ -534,7 +535,7 @@ body {
 .rankings-table td {
   padding: 14px 16px;
   font-size: 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
   vertical-align: middle;
   white-space: nowrap;
 }
@@ -545,7 +546,7 @@ body {
 }
 
 .rankings-table tbody tr:hover {
-  background: rgba(255,255,255,0.03);
+  background: rgba(0,168,79,0.06);
 }
 
 @keyframes rowFade {
@@ -607,7 +608,7 @@ body {
 .prob-bar__track {
   flex: 1;
   height: 5px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.08);
   border-radius: 50px;
   overflow: hidden;
 }
@@ -615,7 +616,7 @@ body {
 .prob-bar__fill {
   height: 100%;
   border-radius: 50px;
-  background: linear-gradient(90deg, var(--clr-green), var(--clr-blue));
+  background: linear-gradient(90deg, var(--clr-gold), var(--clr-orange));
   transition: width 0.8s ease;
 }
 
@@ -698,7 +699,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(8,9,13,0.92);
+  background: rgba(255,255,255,0.88);
   backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
@@ -713,7 +714,7 @@ body {
   border-radius: var(--radius-lg);
   max-width: 420px;
   width: 90%;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
 }
 
 .spinner {
@@ -742,7 +743,7 @@ body {
 }
 
 .loading-bar {
-  background: rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.08);
   border-radius: 50px;
   height: 6px;
   overflow: hidden;
@@ -751,7 +752,7 @@ body {
 .loading-bar__fill {
   height: 100%;
   border-radius: 50px;
-  background: linear-gradient(90deg, var(--clr-gold), var(--clr-blue));
+  background: linear-gradient(90deg, var(--clr-green), var(--clr-gold), var(--clr-orange));
   width: 0%;
   transition: width 0.3s ease;
 }
@@ -841,12 +842,12 @@ body {
 .radar-card__value {
   font-size: 36px;
   font-weight: 700;
-  color: #fff;
+  color: #1a2e1c;
   margin-bottom: 8px;
 }
 
 .radar-card__bar-track {
-  background: rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.08);
   border-radius: 50px;
   height: 6px;
   overflow: hidden;
@@ -855,9 +856,285 @@ body {
 .radar-card__bar-fill {
   height: 100%;
   border-radius: 50px;
-  background: linear-gradient(90deg, var(--clr-gold), var(--clr-blue));
+  background: linear-gradient(90deg, var(--clr-gold), var(--clr-orange));
   transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
   width: 0%;
+}
+
+/* ── Bracket Section ─────────────────────────────────────────── */
+.bracket-section {
+  padding: 80px 0;
+  background: var(--clr-surface);
+}
+
+/* Progress bar */
+.bp-bar-wrap   { margin-bottom: 28px; }
+.bp-bar        { height: 6px; background: rgba(0,0,0,0.08); border-radius: 50px; overflow: hidden; margin-bottom: 10px; }
+.bp-bar__fill  { height: 100%; background: linear-gradient(90deg, var(--clr-green), var(--clr-gold)); border-radius: 50px; transition: width 0.4s ease; }
+.bp-label      { font-size: 14px; color: var(--clr-text-muted); }
+
+/* Bracket action buttons */
+.bracket-actions { text-align: center; margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.bracket-back-btn { margin-bottom: 24px; }
+
+/* ── Group pick grid ─────────────────────────────────────────── */
+.group-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 960px) { .group-pick-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 680px) { .group-pick-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .group-pick-grid { grid-template-columns: 1fr; } }
+
+/* Group pick card */
+.gpc {
+  background: #fff;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.gpc__hdr {
+  background: var(--clr-surface2);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.gpc__letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: var(--clr-text);
+}
+
+.gpc__badge            { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; background: rgba(0,0,0,0.06); color: var(--clr-text-muted); }
+.gpc__badge--partial   { background: rgba(230,168,0,0.15); color: var(--clr-gold); }
+.gpc__badge--done      { background: rgba(0,168,79,0.15);  color: var(--clr-green); }
+
+.gpc__teams { padding: 4px 0; }
+
+.gpc__team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.gpc__team:hover { background: rgba(0,168,79,0.06); }
+
+.gpc__flag { font-size: 20px; line-height: 1; }
+
+.gpc__name {
+  font-size: 13px;
+  font-weight: 500;
+  flex: 1;
+  color: var(--clr-text);
+  transition: color 0.15s;
+}
+
+.gpc__check {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--clr-green);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.gpc__team--selected               { background: rgba(0,168,79,0.10); }
+.gpc__team--selected .gpc__check   { opacity: 1; }
+.gpc__team--selected .gpc__name    { color: var(--clr-green); font-weight: 600; }
+.gpc__team--dimmed                 { opacity: 0.35; pointer-events: none; }
+
+/* ── Visual bracket tree ─────────────────────────────────────── */
+.bt-scroll {
+  overflow-x: auto;
+  padding: 8px 0 24px;
+  cursor: grab;
+}
+.bt-scroll:active { cursor: grabbing; }
+
+.bt {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0;
+  min-width: max-content;
+}
+
+/* Round column */
+.bt-col {
+  position: relative;
+  flex-shrink: 0;
+  padding: 0 14px;
+}
+
+/* Column label (round name) */
+.bt-col-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--clr-text-muted);
+  text-align: center;
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+.bt-col-label--final {
+  color: var(--clr-gold);
+  font-size: 11px;
+}
+
+/* Match card — absolutely positioned within column */
+.bt-match {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+}
+
+.bt-gap {
+  height: 3px;
+  background: var(--clr-surface2);
+}
+
+/* Team slots */
+.bt-team {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  background: #fff;
+  border: 1px solid var(--clr-border);
+  cursor: pointer;
+  transition: background 0.12s;
+  overflow: hidden;
+}
+.bt-team--top { border-radius: 4px 4px 0 0; border-bottom-width: 0; }
+.bt-team--bot { border-radius: 0 0 4px 4px; }
+
+.bt-team:not(.bt-team--tbd):not(.bt-team--loser):hover {
+  background: rgba(0,168,79,0.09);
+}
+
+.bt-flag { font-size: 14px; line-height: 1; flex-shrink: 0; }
+.bt-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--clr-text);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bt-crown { font-size: 11px; margin-left: auto; flex-shrink: 0; }
+
+.bt-team--winner               { background: rgba(0,168,79,0.13) !important; border-color: rgba(0,168,79,0.4) !important; }
+.bt-team--winner .bt-name      { color: var(--clr-green); font-weight: 700; }
+.bt-team--loser                { opacity: 0.32; cursor: default; }
+.bt-team--loser:hover          { background: #fff !important; }
+.bt-team--tbd                  { opacity: 0.45; cursor: default; }
+.bt-team--tbd:hover            { background: #fff !important; }
+
+/* Final column match — slightly larger */
+.bt-match--final .bt-team { padding: 0 12px; }
+.bt-match--final .bt-flag  { font-size: 18px; }
+.bt-match--final .bt-name  { font-size: 13px; font-weight: 600; }
+
+/* Champion inline display below final match */
+.bt-champion-inline {
+  position: absolute;
+  left: 0; right: 0;
+  text-align: center;
+  padding: 8px 4px;
+  animation: cardReveal 0.5s ease both;
+}
+.bt-champ-flag  { font-size: 40px; }
+.bt-champ-name  { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #1a2e1c; }
+.bt-champ-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--clr-gold); margin-top: 2px; }
+
+/* SVG overlay for connector lines */
+.bt-svg {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ── Wildcard banner ─────────────────────────────────────────── */
+.wc-banner {
+  background: rgba(230,168,0,0.08);
+  border: 1px solid rgba(230,168,0,0.25);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+}
+
+.wc-banner strong {
+  font-size: 13px;
+  color: var(--clr-gold);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.wc-banner__teams { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.wc-chip {
+  background: rgba(230,168,0,0.10);
+  border: 1px solid rgba(230,168,0,0.20);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--clr-text);
+}
+
+.wc-chip em { color: var(--clr-text-muted); font-style: normal; }
+
+
+/* ── Champion reveal ─────────────────────────────────────────── */
+.bracket-champion {
+  text-align: center;
+  padding: 60px 20px 20px;
+  animation: cardReveal 0.8s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.bracket-champion__inner {
+  background: linear-gradient(135deg, rgba(255,210,0,0.12) 0%, rgba(0,168,79,0.08) 100%);
+  border: 1px solid rgba(255,210,0,0.4);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 0 60px rgba(255,210,0,0.15);
+}
+
+.bracket-champion__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--clr-gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.bracket-champion__flag {
+  font-size: 72px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.bracket-champion__name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 6vw, 60px);
+  color: #1a2e1c;
 }
 
 /* ── Footer ──────────────────────────────────────────────────── */

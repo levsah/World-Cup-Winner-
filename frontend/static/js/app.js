@@ -339,7 +339,7 @@ function hideBanners() {
 function spawnConfetti() {
   const container = document.getElementById('confetti');
   container.innerHTML = '';
-  const colours = ['#f5c842','#3d9aff','#00d68f','#a855f7','#ff4d6d','#fff'];
+  const colours = ['#ffd200','#ff6d00','#00e676','#00b8d9','#fff','#ffea00'];
   for (let i = 0; i < 70; i++) {
     const p = document.createElement('div');
     p.className = 'confetti-piece';

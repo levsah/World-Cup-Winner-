@@ -13,7 +13,7 @@ from flask_caching import Cache
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from config import FLASK_HOST, FLASK_PORT, FLASK_DEBUG, CACHE_TIMEOUT_SECONDS, APISPORTS_KEY
+from config import FLASK_HOST, FLASK_PORT, FLASK_DEBUG, CACHE_TIMEOUT_SECONDS, APISPORTS_KEY, RAPIDAPI_KEY
 from data_processor import build_all_profiles
 from predictor import run_monte_carlo
 
@@ -83,7 +83,7 @@ def static_files(filename):
 def health():
     return jsonify({
         "status": "ok",
-        "api_key_set": bool(APISPORTS_KEY),
+        "api_key_set": bool(RAPIDAPI_KEY or APISPORTS_KEY),
         "timestamp": int(time.time()),
     })
 
@@ -142,6 +142,38 @@ def api_teams():
     """Return the list of all 48 qualified teams."""
     from data_processor import QUALIFIED_TEAMS
     return jsonify(QUALIFIED_TEAMS)
+
+
+@app.route("/api/groups")
+def api_groups():
+    """Return teams organised by group with fallback strength scores (no live API calls)."""
+    from data_processor import (
+        QUALIFIED_TEAMS, FALLBACK_FIFA_RANKS, TEAM_PLAYER_QUALITY,
+        FALLBACK_SQUAD_DEPTH, FALLBACK_WC_HISTORY, FALLBACK_TOURNAMENT_EXP,
+    )
+    groups: dict = {}
+    for team in QUALIFIED_TEAMS:
+        grp = team["group"]
+        tid = team["id"]
+        rank       = FALLBACK_FIFA_RANKS.get(tid, 48)
+        fifa_score = max(0.0, 100.0 - (rank - 1) * 2.0)
+        player     = TEAM_PLAYER_QUALITY.get(tid, 60.0)
+        squad      = FALLBACK_SQUAD_DEPTH.get(tid, 60.0)
+        wc_hist    = FALLBACK_WC_HISTORY.get(tid, 10.0)
+        tourn_exp  = FALLBACK_TOURNAMENT_EXP.get(tid, 20.0)
+        strength   = round(
+            0.20 * fifa_score + 0.20 * 50 + 0.12 * wc_hist +
+            0.08 * squad      + 0.10 * 50 + 0.10 * tourn_exp + 0.20 * player,
+            1,
+        )
+        groups.setdefault(grp, []).append({
+            "id":            tid,
+            "name":          team["name"],
+            "flag":          team["flag"],
+            "confederation": team["confederation"],
+            "strength":      strength,
+        })
+    return jsonify({"status": "ok", "groups": groups})
 
 
 # ---------------------------------------------------------------------------

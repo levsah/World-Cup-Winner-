@@ -164,6 +164,41 @@
     </div>
   </div>
 
+  <!-- ═══════ BUILD YOUR BRACKET ═════════════════════════════════ -->
+  <section id="bracketSection" class="bracket-section">
+    <div class="container">
+      <h2 class="section-title">Build Your Bracket</h2>
+      <p class="section-sub">Pick 2 teams to advance from each group, then call your champion round by round</p>
+
+      <!-- Phase 1 — Group Stage -->
+      <div id="groupsPhase">
+        <div class="bp-bar-wrap">
+          <div class="bp-bar"><div class="bp-bar__fill" id="bpFill" style="width:0%"></div></div>
+          <p class="bp-label" id="bpLabel"><strong>0 / 12</strong> groups decided</p>
+        </div>
+        <div class="group-pick-grid" id="groupPickGrid"></div>
+        <div class="bracket-actions">
+          <button class="btn btn--primary" id="btnGenerateBracket" disabled>Build My Bracket &#8594;</button>
+          <button class="btn btn--ghost"   id="btnResetBracket">Reset</button>
+        </div>
+      </div>
+
+      <!-- Phase 2 — Knockout -->
+      <div id="knockoutPhase" class="hidden">
+        <button class="btn btn--ghost bracket-back-btn" id="btnBackToGroups">&#8592; Edit Group Picks</button>
+        <div id="wildcardsBanner"></div>
+        <div id="knockoutRounds"></div>
+        <div class="bracket-champion hidden" id="bracketChampion">
+          <div class="bracket-champion__inner">
+            <p class="bracket-champion__label">YOUR 2026 WORLD CUP CHAMPION</p>
+            <div class="bracket-champion__flag" id="champFlag"></div>
+            <div class="bracket-champion__name" id="champName"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════ FOOTER ═════════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container">
@@ -173,5 +208,6 @@
   </footer>
 
   <script src="static/js/app.js"></script>
+  <script src="static/js/bracket.js"></script>
 </body>
 </html>
